@@ -22,22 +22,45 @@
 	<p>プログラムを十分書いてきた人，コンパイルエラー修正に十分慣れた人でも，自分のコンパイルエラー修正を見直すことで自分の修正の癖や誤った修正方法に気づき，コンパイルエラー修正プロセスを改善できます．</p>
 
 	<h2><a name="cocoviewer">CocoViewerとは</a></h2>
-	<img src="./img/cocomain.png" width = "90%" />
+	<img src="./img/cocomain.png" width = "90%"  alt="CocoViewerメイン画面"/>
 	<p> CocoViewerはコンパイルエラー修正履歴分析システムです．コンパイルエラーの修正ログを自動的に収集し，コンパイルエラー修正時間の折れ線グラフ(修正時間推移グラフ)を表示します．</p>
 	<p> 修正時間推移グラフを分析することにより，自分のコンパイルエラー修正についての学習状況を分析することが可能です． </p>
 
 	<h2><a name="start">起動方法</a></h2>
-	<p> 事前にRonproエディタ，Eclipseの利用可能メモリを確保してください．利用可能メモリを確保することで，コンパイルエラー修正情報の分析を高速に行うことが出来ます．</p>
-	<p> Eclipseの場合，Eclipse.iniファイルを開，-Xms，-Xmxの値を書き換えることでEclipseの利用可能メモリを確保することが出来ます．</p>
-	<p> -Xms，-Xmxの値を-Xms512m，-Xmx512m と書き換えておくと．十分期待した動作を行えます．</p>
-	<p> CocoViewerを起動するためには，先にコンパイルエラー修正情報の収集が必要になります．RonproPlugin内の<strong>Create CocoData</strong>をクリックして，ダイヤログが消えるまでお待ちください．</p>
-	<p> <font size ="4" color="#FF0000"> 注意：コンパイルエラー修正情報の収集には時間がかかる場合があります．10分～20分程度お待ちください</font></p>
-	<p> コンパイルエラー修正情報の収集が終わったら，<strong>Open CocoViewer</strong>をクリックしてください．CocoViewerメイン画面が表示されます．</p>
-	<p> 補足ですが，現在のバージョンではコンパイルエラー修正情報の収集中に，プログラミング作業を行うことが出来るようになりました（2013年度のバージョンでは出来ませんでした．）</p>
+	<p> <font size=4>Windows でのみ起動確認をしています．Mac, linux での動作は保証できません．</font></p>
 
-	<h3><a name="start">起動方法に関する注意（Eclipse編）</a></h3>
-	<p> Eclipseの入っているフォルダの直下にｅｘｔフォルダ内にCocoViewerのフォルダがあることを確認して下さい.</p>
-	<p> Eclipseの入っているフォルダの直下にWorkSpaceに作られていることを確認して下さい．</p>
+	<h3> コンパイルエラー修正情報の分析</h3>
+	<p> CocoViewerを起動するためには，事前にコンパイルエラー修正情報の分析が必要となります．システムの利用可能メモリを確保することで，コンパイルエラー修正情報の分析を高速化することができます．</p>
+	<p>コンパイルエラー分析後にCocoViewerを起動することが可能となります</p>
+	<p> <font size ="4" color="#FF0000"> 注意：事前にJDKをインストール，環境パスを設定し，Javacコマンドが実行できる環境を準備してください．コンパイルエラー修正情報の収集には時間がかかる場合があります．10分～20分程度お待ちください．</font></p>
+	
+	<h3> RonproEditor の場合</h3>
+	<p> RonproEditor.bat からRonproEditorを起動してください．</p>
+	<img src="./img/ronprostart.png" alt="Ronproの起動" / >
+	<p> Tools内の<strong>Create CocoData</strong>をクリックして，ダイヤログが消えるまでお待ちください．</p>
+	<img src="./img/RonproCreateCocoData.png" alt="Ronproでのコンパイルエラー修正履歴分析ボタン" / >
+	<p> <font color="#FF0000"> 注意：RonproEditorバージョンでは，分析中にダイヤログが表示されている間，一再操作ができなくなります．現在，この不具合については修正中です．</font></p>
+	<img src="./img/ProgressBarHold.png" alt="プログレスバー表示中はRonproが操作できません" width = "50%"/ >
+	
+	<p> <font color="#FF0000"> RonproEditor.bat から起動せずにjar ファイルから起動した場合，後述しますソースコード比較ウィンドウが開かない場合があります．必ずbat ファイルから起動してください．</font></p>
+
+	<p> 分析が終わりましたら，Toolsから<strong>Create CocoData</strong>をクリックしてください</p>
+	<img src="./img/RonproOpenCocoViewer.png" alt="RonproでCocoViewer起動" / >
+
+
+	<h3> Eclipse の場合 </h3>
+	<p> Eclipseの場合，Eclipse.iniファイルを開き，-Xms，-Xmxの値を書き換えることでEclipseの利用可能メモリを確保してください．</p>
+	<p> 具体的には，Eclipse.iniファイルの-Xms，-Xmxの値を-Xms512m，-Xmx512m と書き換えると．利用可能メモリが十分確保されます．</p>
+	<img src="./img/EclipseiniSetting.png" alt="Eclipse.intを開く" width = "40%" / >
+	<img src="./img/iniedit.png" alt="Eclipse.intを編集する" width = "40%" / >
+	<p> RonproPlugin内の<strong>Create CocoData</strong>をクリックして，ダイヤログが消えるまでお待ちください．</p>
+	<img src="./img/EclipseCreateCocodata.png" alt="Eclipseでのコンパイルエラー修正履歴分析ボタン" / >
+	<p> <font color="#FF0000"> 注意：Eclipseの入っているフォルダの直下にｅｘｔフォルダ内にCocoViewerのフォルダがあることを確認して下さい．</font></p>
+	<p> <font color="#FF0000"> Eclipseの入っているフォルダの直下にWorkSpaceに作られていることを確認して下さい．</font></p>
+	<img src="./img/Eclipsefoldsetting.png" alt="Eclipseフォルダ設定の注意" width = "50%" / >
+	
+	<p> 分析が終わりましたら，RonproPlugin内の<strong>Create CocoData</strong>クリックしてください</p>
+	<img src="./img/EclipseOpenCocoViewer.png" alt="EclipseでCocoViewer起動" / >
 
 	<h2><a name="interface">画面の説明</a></h2>
 	<p> システムを起動すると，先ほどのCocoViewerメインウィンドウが表示されます．</p>
